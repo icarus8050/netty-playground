@@ -7,6 +7,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class NonBlockingServer {
@@ -85,7 +86,7 @@ public class NonBlockingServer {
 
             byte[] data = new byte[numRead];
             System.arraycopy(buffer.array(), 0, data, 0, numRead);
-            System.out.println(new String(data, "UTF-8") + " from " + socketChannel.getRemoteAddress());
+            System.out.println(new String(data, StandardCharsets.UTF_8) + " from " + socketChannel.getRemoteAddress());
 
             doEchoJob(key, data);
         } catch (IOException ex) {
